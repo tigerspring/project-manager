@@ -1,0 +1,60 @@
+package com.vcg;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.management.ManagementFactory;
+import java.util.EventListener;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.boot.context.embedded.EmbeddedServletContainer;
+import org.springframework.boot.context.embedded.FilterRegistrationBean;
+import org.springframework.boot.context.embedded.InitParameterConfiguringServletContextInitializer;
+import org.springframework.boot.context.embedded.ServletListenerRegistrationBean;
+import org.springframework.boot.context.embedded.ServletRegistrationBean;
+import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.servlet.DispatcherServlet;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory(8099);
+		
+		// spring context
+		ServletListenerRegistrationBean<EventListener> servletListener = new ServletListenerRegistrationBean<EventListener>(
+				new ContextLoaderListener());
+
+		// springmvc servlet context
+		ServletRegistrationBean servletRegisterBean = new ServletRegistrationBean(new DispatcherServlet(), "/");
+		servletRegisterBean.addInitParameter("contextConfigLocation", "classpath:springmvc.xml");
+		servletRegisterBean.setLoadOnStartup(1);
+
+		// 字符集过滤器
+		FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new CharacterEncodingFilter(),
+				servletRegisterBean);
+		filterRegistrationBean.setName("encodingFilter");
+		filterRegistrationBean.addInitParameter("encoding", "utf-8");
+		filterRegistrationBean.addUrlPatterns("/*");
+
+		factory.addInitializers(servletListener, filterRegistrationBean, servletRegisterBean);
+
+		// 初始化参数
+		Map<String, String> parameters = new HashMap<>();
+		parameters.put("contextConfigLocation", "classpath:applicationContext.xml");
+		InitParameterConfiguringServletContextInitializer initParam = new InitParameterConfiguringServletContextInitializer(
+				parameters);
+		EmbeddedServletContainer container = factory.getEmbeddedServletContainer(initParam);
+		container.start();
+		
+		//pid 方便 用kill关闭
+		String name = ManagementFactory.getRuntimeMXBean().getName().split("@")[0];
+		FileWriter writer=new FileWriter(new File("main.pid"));
+		writer.write(name);
+		writer.close();
+		
+	}
+
+}

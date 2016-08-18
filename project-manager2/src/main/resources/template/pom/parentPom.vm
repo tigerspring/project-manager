@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.vcg</groupId>
+	<artifactId>${project}-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>${project}-parent</name>
+	<url>http://maven.apache.org</url>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>Snapshots</id>
+			<name>Snapshots</name>
+			<url>http://zrpc5.wuyu.pub:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+		<repository>
+			<id>Releases</id>
+			<name>Releases</name>
+			<url>http://zrpc5.wuyu.pub:8081/nexus/content/repositories/releases/</url>
+		</repository>
+	</distributionManagement>
+
+
+
+
+	<repositories>
+		<repository>
+			<id>Snapshots</id>
+			<name>Snapshots</name>
+			<url>http://zrpc5.wuyu.pub:8081/nexus/content/repositories/snapshots/</url>
+		</repository>
+
+		<repository>
+			<id>Releases</id>
+			<name>Releases</name>
+			<url>http://zrpc5.wuyu.pub:8081/nexus/content/repositories/releases/</url>
+		</repository>
+	</repositories>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.compile.version>1.7</java.compile.version>
+		<!-- for maven compiler plugin -->
+		<maven_compiler_plugin_version>2.3.2</maven_compiler_plugin_version>
+		<java_source_version>1.7</java_source_version>
+		<java_target_version>1.7</java_target_version>
+		<file_encoding>UTF-8</file_encoding>
+		<maven_source_plugin_version>2.1.1</maven_source_plugin_version>
+		<maven_jar_plugin_version>2.3.2</maven_jar_plugin_version>
+		<maven_war_plugin_version>2.1.1</maven_war_plugin_version>
+		<maven_install_plugin_version>2.3.1</maven_install_plugin_version>
+		<maven_deploy_plugin_version>2.7</maven_deploy_plugin_version>
+		<maven-surefire-plugin_version>2.17</maven-surefire-plugin_version>
+	</properties>
+
+
+	<modules>
+		<module>${project}-service</module>
+		<module>${project}-service-interface</module>
+	</modules>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<addMavenDescriptor>true</addMavenDescriptor>
+						<index>true</index>
+						<manifest>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin_version}</version>
+				<configuration>
+					<useSystemClassLoader>true</useSystemClassLoader>
+					<forkMode>once</forkMode>
+					<argLine>${argline}</argLine>
+					<systemProperties>
+						<!-- common shared -->
+						<property>
+							<name>transporter</name>
+							<value>${transporter}</value>
+						</property>
+						<property>
+							<name>serialization</name>
+							<value>${serialization}</value>
+						</property>
+						<!-- server side -->
+						<property>
+							<name>port</name>
+							<value>${port}</value>
+						</property>
+						<property>
+							<name>threadpool</name>
+							<value>${threadpool}</value>
+						</property>
+						<property>
+							<name>threads</name>
+							<value>${threads}</value>
+						</property>
+						<property>
+							<name>iothreads</name>
+							<value>${iothreads}</value>
+						</property>
+						<!-- client side -->
+						<property>
+							<name>server</name>
+							<value>${server}</value>
+						</property>
+						<property>
+							<name>timeout</name>
+							<value>${timeout}</value>
+						</property>
+						<property>
+							<name>length</name>
+							<value>${length}</value>
+						</property>
+						<property>
+							<name>connections</name>
+							<value>${connections}</value>
+						</property>
+						<property>
+							<name>base</name>
+							<value>${base}</value>
+						</property>
+						<property>
+							<name>concurrent</name>
+							<value>${concurrent}</value>
+						</property>
+						<property>
+							<name>runs</name>
+							<value>${runs}</value>
+						</property>
+						<property>
+							<name>onerror</name>
+							<value>${onerror}</value>
+						</property>
+					</systemProperties>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<skip>${skip_maven_deploy}</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${maven_jar_plugin_version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${maven_war_plugin_version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>${maven_install_plugin_version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>${maven_deploy_plugin_version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven_compiler_plugin_version}</version>
+					<configuration>
+						<fork>true</fork>
+						<source>${java_source_version}</source>
+						<target>${java_target_version}</target>
+						<encoding>${file_encoding}</encoding>
+						<compilerArgs>
+							<arg>-XX:MaxPermSize=512M</arg>
+						</compilerArgs>
+					</configuration>
+				</plugin>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-dependency-plugin
+										</artifactId>
+										<versionRange>
+											[2.1,)
+										</versionRange>
+										<goals>
+											<goal>unpack</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.1</version>
+					<configuration>
+						<source>${java.compile.version}</source>
+						<target>${java.compile.version}</target>
+						<encoding>utf-8</encoding>
+					</configuration>
+				</plugin>
+			</plugins>
+
+
+		</pluginManagement>
+
+	</build>
+
+
+</project>

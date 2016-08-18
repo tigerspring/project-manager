@@ -1,0 +1,91 @@
+#server
+server:
+  port: 8001
+  tomcat:
+     uri-encoding: UTF-8
+
+#eureka
+eureka:
+  instance:
+    prefer-ip-address: true
+  server:
+    waitTimeInMsWhenSyncEmpty: 0
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://192.168.0.5:9000/eureka/
+
+
+spring:
+  #datasource
+  datasource:
+    name: test
+    url: ${url}
+    username: ${username}
+    password: ${password}
+    maxActive: 200
+    initialSize: 2
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  #http  
+  http:
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true
+  #jackson
+  jackson: 
+    date-format: yyyy-MM-dd HH:mm:ss
+    timeZone: GMT+8
+  #mvc 
+  mvc:
+    favicon:
+      enabled: false
+  #resources
+  resources:
+    cache-period: 0
+    chain: 
+      cache: false
+  #aop
+  aop: 
+    auto: true
+    proxy-target-class: true
+  #redis 
+  #redis: 
+    #host: redis1
+    #password: user_center320675
+    #port: 6379
+    #pool:
+      #max-idle: 8
+      #min-idle: 0
+      #max-active: 8
+      #max-wait: -1
+#multipart    
+multipart:
+  enabled: true
+  file-size-threshold: 0
+  location:
+  max-file-size: 100Mb
+  max-request-size: 10Mb
+  
+
+  
+#loggin 
+logging:
+  level:
+    org:
+      mybatis: debug
+    dao: debug
+  
+  
+  
+  
