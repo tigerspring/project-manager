@@ -48,9 +48,9 @@ public class GeneratorSqlmap {
 	private static String username = "kangminggang";
 	private static String password = "FFg04wJO";*/
 	
-	private static String url = "jdbc:mysql://101.200.120.57:3306/uc";
-	private static String username = "root";
-	private static String password = "user_center320675";
+	private static String url = "jdbc:mysql://rm-2zeum12f152n33c46o.mysql.rds.aliyuncs.com:3306/edit_bak";
+	private static String username = "photo";
+	private static String password = "b3bPVU8W";
 	
 	private static String driverClass = "com.mysql.jdbc.Driver";
 	
@@ -66,14 +66,14 @@ public class GeneratorSqlmap {
 		GeneratorSqlmap generatorSqlmap = new GeneratorSqlmap();
 		isGenerator=true;
 		List lst=null;
-		lst=Arrays.asList("user");
+		lst=Arrays.asList("getty_collection","exist_resource");
 		//lst=new ArrayList();
-		FileInputStream in = generatorSqlmap.genneratorBoot(url, username, password, driverClass, "edit", "com.vcg.uc",
+		FileInputStream in = generatorSqlmap.genneratorBoot(url, username, password, driverClass, "outstorage", "com.vcg.edit",
 				lst);
 		
 		//delAllFile("e:/output/");
 		
-		IOUtils.copy(in, new FileOutputStream(new File("e:/output/instorage.zip")));
+		IOUtils.copy(in, new FileOutputStream(new File("e:/output/outstorage.zip")));
 		System.err.println("生成ok....");
 		
 		//unZipFiles("e:/output/instorage.zip","e:/output/");
