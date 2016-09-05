@@ -44,13 +44,17 @@ public class GeneratorSqlmap {
 	/*spring.datasource1.url=jdbc:mysql://123.56.248.214/gettychina?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
 		spring.datasource1.username=kangminggang
 		spring.datasource1.password=FFg04wJO*/
-	/*private static String url = "jdbc:mysql://123.56.248.214:3306/gettyphoto";
+	/*private static String url = "jdbc:mysql://123.56.248.214:3306/gettychina";
 	private static String username = "kangminggang";
 	private static String password = "FFg04wJO";*/
 	
-	private static String url = "jdbc:mysql://rm-2zeum12f152n33c46o.mysql.rds.aliyuncs.com:3306/edit_bak";
+	private static String url = "jdbc:mysql://rm-2ze94l5qkx3920xglo.mysql.rds.aliyuncs.com:3306/provider";
 	private static String username = "photo";
-	private static String password = "b3bPVU8W";
+	private static String password = "photo@1234";
+
+	/*private static String url = "jdbc:mysql://101.200.120.57:3306/provider_bak";
+	private static String username = "root";
+	private static String password = "user_center320675";*/
 	
 	private static String driverClass = "com.mysql.jdbc.Driver";
 	
@@ -66,17 +70,17 @@ public class GeneratorSqlmap {
 		GeneratorSqlmap generatorSqlmap = new GeneratorSqlmap();
 		isGenerator=true;
 		List lst=null;
-		lst=Arrays.asList("getty_collection","exist_resource");
+		lst=Arrays.asList("brand");
 		//lst=new ArrayList();
-		FileInputStream in = generatorSqlmap.genneratorBoot(url, username, password, driverClass, "outstorage", "com.vcg.edit",
+		FileInputStream in = generatorSqlmap.genneratorBoot(url, username, password, driverClass, "edit", "com.vcg.provider",
 				lst);
 		
-		//delAllFile("e:/output/");
+		delAllFile("e:/output/");
 		
 		IOUtils.copy(in, new FileOutputStream(new File("e:/output/outstorage.zip")));
 		System.err.println("生成ok....");
 		
-		//unZipFiles("e:/output/instorage.zip","e:/output/");
+		unZipFiles("e:/output/outstorage.zip","e:/output/");
 		
 	}
 	

@@ -29,9 +29,9 @@ public class MD5 {
 		return str;
 	}
 
-	public static String encodePassword(String password) {
-		return md5("123456");
-	}
 	
+	public static void main(String[] args) {
+		System.err.println(md5("3341editorial/bank1/img1/uploadimg/3000/img3341.jpg3341800"));
+	}
 
 }
