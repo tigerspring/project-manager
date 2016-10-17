@@ -44,21 +44,20 @@ public class GeneratorSqlmap {
 	/*spring.datasource1.url=jdbc:mysql://123.56.248.214/gettychina?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
 		spring.datasource1.username=kangminggang
 		spring.datasource1.password=FFg04wJO*/
-	/*private static String url = "jdbc:mysql://123.56.248.214:3306/gettychina";
+	/*private static String url = "jdbc:mysql://123.56.248.214:3306/gettyphoto";
 	private static String username = "kangminggang";
 	private static String password = "FFg04wJO";*/
 	
-	private static String url = "jdbc:mysql://rm-2ze94l5qkx3920xglo.mysql.rds.aliyuncs.com:3306/provider";
+	private static String url = "jdbc:mysql://rm-2zeum12f152n33c46o.mysql.rds.aliyuncs.com:3306/edit_bak";
 	private static String username = "photo";
-	private static String password = "photo@1234";
+	private static String password = "b3bPVU8W";
 
-	/*private static String url = "jdbc:mysql://101.200.120.57:3306/provider_bak";
-	private static String username = "root";
-	private static String password = "user_center320675";*/
+	/*private static String url = "jdbc:mysql://rm-2ze5t95m5802gd20po.mysql.rds.aliyuncs.com/boss";
+	private static String username = "boss";
+	private static String password = "boss123abcH";*/
 	
 	private static String driverClass = "com.mysql.jdbc.Driver";
 	
-	private static boolean isGenerator=false;
 
 	private static String baseDao = BaseDao.class.getName();
 	private static String baseModel = BaseModel.class.getName();
@@ -68,12 +67,12 @@ public class GeneratorSqlmap {
 
 	public static void main(String[] args) throws Exception {
 		GeneratorSqlmap generatorSqlmap = new GeneratorSqlmap();
-		isGenerator=true;
+		boolean isGenerator=true;
 		List lst=null;
-		lst=Arrays.asList("brand");
+		lst=Arrays.asList("edit_group");
 		//lst=new ArrayList();
-		FileInputStream in = generatorSqlmap.genneratorBoot(url, username, password, driverClass, "edit", "com.vcg.provider",
-				lst);
+		FileInputStream in = generatorSqlmap.genneratorCloud(url, username, password, driverClass, "edit", "com.vcg.edit",
+				lst,isGenerator);
 		
 		delAllFile("e:/output/");
 		
@@ -175,7 +174,7 @@ public class GeneratorSqlmap {
 		}
 	
 	public FileInputStream genneratorCloud(String url, String username, String password, String driverClass,
-			String project, String packagePath, List<String> tbls) throws Exception {
+			String project, String packagePath, List<String> tbls,boolean isGenerator) throws Exception {
 		String targetPath = "/"
 				+ Thread.currentThread().getContextClassLoader().getResource("out").toString().substring(6) + "/"
 				+ new Date().getTime();
@@ -312,7 +311,7 @@ public class GeneratorSqlmap {
 	
 	
 	public FileInputStream genneratorBoot(String url, String username, String password, String driverClass,
-			String project, String packagePath, List<String> tbls) throws Exception {
+			String project, String packagePath, List<String> tbls,boolean isGenerator) throws Exception {
 		String targetPath = "/"
 				+ Thread.currentThread().getContextClassLoader().getResource("out").toString().substring(6) + "/"
 				+ new Date().getTime();
