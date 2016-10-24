@@ -48,6 +48,11 @@ public class GeneratorSqlmap {
 	private static String username = "kangminggang";
 	private static String password = "FFg04wJO";*/
 	
+	/*private static String url = "jdbc:mysql://101.200.220.163:3306/ph";
+		private static String username ="kangminggang";
+		private static String password = "FFg04wJO";*/
+		
+	
 	private static String url = "jdbc:mysql://rm-2zeum12f152n33c46o.mysql.rds.aliyuncs.com:3306/edit_bak";
 	private static String username = "photo";
 	private static String password = "b3bPVU8W";
@@ -69,7 +74,7 @@ public class GeneratorSqlmap {
 		GeneratorSqlmap generatorSqlmap = new GeneratorSqlmap();
 		boolean isGenerator=true;
 		List lst=null;
-		lst=Arrays.asList("edit_group");
+		lst=Arrays.asList("resource_release");
 		//lst=new ArrayList();
 		FileInputStream in = generatorSqlmap.genneratorCloud(url, username, password, driverClass, "edit", "com.vcg.edit",
 				lst,isGenerator);
