@@ -91,7 +91,7 @@ public class DatasourceController {
 	
 	@RequestMapping("/genneratorBoot")
 	public void genneratorRoot(HttpServletResponse response, Integer id, String project, String packagePath, String tbls,
-			String containerType) throws Exception {
+			String containerType,boolean isGenerator) throws Exception {
 		GeneratorSqlmap gen = new GeneratorSqlmap();
 		Datasource datasource = datasourceService.selectByPrimaryKey(id);
 		List<String> tables = new ArrayList<>();
@@ -101,13 +101,13 @@ public class DatasourceController {
 			}
 		}
 		FileInputStream in = gen.genneratorBoot(datasource.getJdbcUrl(), datasource.getUsername(),
-				datasource.getPassword(), datasource.getDriver(), project, packagePath, tables);
+				datasource.getPassword(), datasource.getDriver(), project, packagePath, tables,isGenerator);
 		FileUtil.down(response, in, project + ".zip");
 	}
 	
 	@RequestMapping("/genneratorCloud")
 	public void genneratorCloud(HttpServletResponse response, Integer id, String project, String packagePath, String tbls,
-			String containerType) throws Exception {
+			String containerType,boolean isGenerator) throws Exception {
 		GeneratorSqlmap gen = new GeneratorSqlmap();
 		Datasource datasource = datasourceService.selectByPrimaryKey(id);
 		List<String> tables = new ArrayList<>();
@@ -117,7 +117,7 @@ public class DatasourceController {
 			}
 		}
 		FileInputStream in = gen.genneratorCloud(datasource.getJdbcUrl(), datasource.getUsername(),
-				datasource.getPassword(), datasource.getDriver(), project, packagePath, tables);
+				datasource.getPassword(), datasource.getDriver(), project, packagePath, tables,isGenerator);
 		FileUtil.down(response, in, project + ".zip");
 	}
 

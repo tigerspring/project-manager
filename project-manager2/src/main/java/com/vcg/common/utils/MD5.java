@@ -31,7 +31,7 @@ public class MD5 {
 
 	
 	public static void main(String[] args) {
-		System.err.println(md5("3341editorial/bank1/img1/uploadimg/3000/img3341.jpg3341800"));
+		System.err.println(md5("123456"));
 	}
 
 }

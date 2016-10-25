@@ -1,4 +1,30 @@
 spring:
   application:
     name: vcg-${project}
+  cloud:
+    consul:
+      host: 192.168.0.5
+      port: 8500
+   
+
+---
+spring:
+   profiles: test
+   cloud:
+     consul:
+       host: 172.16.240.7
+       port: 8500  
+       discovery:
+        register: false
+        
+          
+---
+spring:
+   profiles: production
+   cloud:
+     consul:
+       host: consul-server.vcg.com
+       port: 8500
+       discovery:
+        register: false
 

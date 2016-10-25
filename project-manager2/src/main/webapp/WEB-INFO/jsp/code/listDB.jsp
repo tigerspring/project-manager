@@ -131,6 +131,16 @@
 								class='form-control' name="tbls" value='' id='packagePath'
 								placeholder='table1,table2,table3.不填写默认是所有'>
 						</div>
+						<div class="form-group">
+							<label for="exportType">keyGenerate:</label>
+							<div class="form-group">
+								<label class="radio-inline"> <input type="radio"
+									name="isGenerator" checked="checked" value="true">true
+								</label> <label class="radio-inline"> <input type="radio"
+									name="isGenerator" value="false">false
+								</label>
+							</div>
+						</div>
 						<div class='modal-footer'>
 							<button type='button' class='btn btn-default'
 								data-dismiss='modal'>关闭</button>
@@ -169,6 +179,16 @@
 							<label for='packagePath'>表名:</label> <input type='text'
 								class='form-control' name="tbls" value='' id='packagePath'
 								placeholder='table1,table2,table3.不填写默认是所有'>
+						</div>
+						<div class="form-group">
+							<label for="exportType">keyGenerate:</label>
+							<div class="form-group">
+								<label class="radio-inline"> <input type="radio"
+									name="isGenerator" checked="checked" value="true">true
+								</label> <label class="radio-inline"> <input type="radio"
+									name="isGenerator" value="false">false
+								</label>
+							</div>
 						</div>
 						<div class='modal-footer'>
 							<button type='button' class='btn btn-default'

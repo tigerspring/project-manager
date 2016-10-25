@@ -430,7 +430,7 @@ public class MyBatisGeneratorWrap extends MyBatisGenerator {
 						long nextLong = Math.abs(r.nextLong());
 						String line = lines[i];
 						if (i == 2) {
-							line = "import " + baseModel + ";\r\n\r\n" + line + "\r\n";
+							line = "import io.swagger.annotations.ApiModelProperty;\r\n\r\nimport " + baseModel + ";\r\n\r\n" + line + "\r\n";
 							// +"import java.util.Map;\r\n"
 							// +"import java.util.LinkedHashMap;\r\n";
 						}

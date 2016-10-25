@@ -23,11 +23,6 @@ public class Main {
 	
 	
 	public static void main(String[] args) throws IOException {
-		//pid 方便 用kill关闭
-		String name = ManagementFactory.getRuntimeMXBean().getName().split("@")[0];
-		FileWriter writer=new FileWriter(new File("main.pid"));
-		writer.write(name);
-		writer.close();
 		
 		SpringApplication.run(Main.class,args);
 	}
