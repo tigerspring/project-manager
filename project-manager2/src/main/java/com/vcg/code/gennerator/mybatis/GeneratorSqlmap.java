@@ -49,13 +49,17 @@ public class GeneratorSqlmap {
 	private static String password = "FFg04wJO";*/
 	
 	/*private static String url = "jdbc:mysql://101.200.220.163:3306/ph";
-		private static String username ="kangminggang";
-		private static String password = "FFg04wJO";*/
+	private static String username ="kangminggang";
+	private static String password = "FFg04wJO";*/
+	
+	private static String url = "jdbc:mysql://219.239.94.125:3306/provider";
+	private static String username ="cfpswap";
+	private static String password = "cfp_Swap_2012";
 		
 	
-	private static String url = "jdbc:mysql://rm-2zeum12f152n33c46o.mysql.rds.aliyuncs.com:3306/edit_bak";
+	/*private static String url = "jdbc:mysql://rm-2ze94l5qkx3920xglo.mysql.rds.aliyuncs.com:3306/edit";
 	private static String username = "photo";
-	private static String password = "b3bPVU8W";
+	private static String password = "photo@1234";*/
 
 	/*private static String url = "jdbc:mysql://rm-2ze5t95m5802gd20po.mysql.rds.aliyuncs.com/boss";
 	private static String username = "boss";
@@ -74,9 +78,9 @@ public class GeneratorSqlmap {
 		GeneratorSqlmap generatorSqlmap = new GeneratorSqlmap();
 		boolean isGenerator=true;
 		List lst=null;
-		lst=Arrays.asList("resource_release");
+		lst=Arrays.asList("origin_brand");
 		//lst=new ArrayList();
-		FileInputStream in = generatorSqlmap.genneratorCloud(url, username, password, driverClass, "edit", "com.vcg.edit",
+		FileInputStream in = generatorSqlmap.genneratorBoot(url, username, password, driverClass, "cfp", "com.vcg.originProvider",
 				lst,isGenerator);
 		
 		delAllFile("e:/output/");
