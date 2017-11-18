@@ -52,18 +52,53 @@ public class GeneratorSqlmap {
 	private static String username ="kangminggang";
 	private static String password = "FFg04wJO";*/
 	
-	private static String url = "jdbc:mysql://219.239.94.125:3306/provider";
+	/*private static String url = "jdbc:mysql://219.239.94.125:3306/provider";
 	private static String username ="cfpswap";
 	private static String password = "cfp_Swap_2012";
-		
+		*/
 	
-	/*private static String url = "jdbc:mysql://rm-2ze94l5qkx3920xglo.mysql.rds.aliyuncs.com:3306/edit";
-	private static String username = "photo";
-	private static String password = "photo@1234";*/
+	private static String url = "jdbc:mysql://rm-2zerd25686l7dxq22o.mysql.rds.aliyuncs.com:3306/resourcecustomer";
+	private static String username = "resourcecustomer";
+	private static String password = "y2ExE8yorqAVCF";
 
-	/*private static String url = "jdbc:mysql://rm-2ze5t95m5802gd20po.mysql.rds.aliyuncs.com/boss";
-	private static String username = "boss";
-	private static String password = "boss123abcH";*/
+	/*private static String url = "jdbc:mysql://rm-2zerzfys20019ig27o.mysql.rds.aliyuncs.com/boss";
+	private static String username = "docker_suhua";
+	private static String password = "docker_suhua@123";*/
+	
+	
+	/*private static String url = "jdbc:mysql://rm-2ze94l5qkx3920xglo.mysql.rds.aliyuncs.com:3306/signature";
+	private static String username = "istock";
+	private static String password = "istock@Vcg2017";*/
+	
+	/*private static String url = "jdbc:mysql://rm-2zeu5cp77781dc5j3o.mysql.rds.aliyuncs.com/new_user_sync";
+	private static String username = "yalitest"; resource2
+	private static String password = "pJh6+kkuzjNSH";*/
+	
+	/*private static String url = "jdbc:mysql://rm-2ze10u7n7as86fr74o.mysql.rds.aliyuncs.com:3306/provider";
+	private static String username = "provider";
+	private static String password = "qXQtcM2sU7nVUC";
+	*/
+	
+
+		
+/*	private static String url = "jdbc:mysql://rm-2ze3s4g435je13i04o.mysql.rds.aliyuncs.com:3306/istock";
+	private static String username = "istock";
+	//private static String password = "wrG7cDDXLG4gbq";*/
+	
+	
+
+/*	private static String url = "jdbc:mysql://rm-rj9atjx67si0y88o7o.mysql.rds.aliyuncs.com:3306/qixin";
+	private static String username = "getty";
+	private static String password = "getty@#1";*/
+	
+	
+	/*private static String url = "jdbc:mysql://rm-2zebmtw3v0m2b5s90o.mysql.rds.aliyuncs.com:3306/resource23";
+	private static String username = "javaapp";
+	private static String password = "javaappA_j";
+	*/
+	/*private static String url = "jdbc:mysql://192.168.3.160:3306/resource2_en";
+	private static String username = "root";
+	private static String password = "mysql";*/
 	
 	private static String driverClass = "com.mysql.jdbc.Driver";
 	
@@ -76,11 +111,14 @@ public class GeneratorSqlmap {
 
 	public static void main(String[] args) throws Exception {
 		GeneratorSqlmap generatorSqlmap = new GeneratorSqlmap();
+		
+		//是否自增长------------------
 		boolean isGenerator=true;
 		List lst=null;
-		lst=Arrays.asList("origin_brand");
-		//lst=new ArrayList();
-		FileInputStream in = generatorSqlmap.genneratorBoot(url, username, password, driverClass, "cfp", "com.vcg.originProvider",
+		lst=Arrays.asList("api_vcg_creative_meta");
+		
+	    //lst=new ArrayList();
+		FileInputStream in = generatorSqlmap.genneratorBoot(url, username, password, driverClass, "resource", "com.vcg.resourceen",
 				lst,isGenerator);
 		
 		delAllFile("e:/output/");
